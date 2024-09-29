@@ -1,4 +1,4 @@
-import { formatCurrency } from "@/lib/formatters"
+import { formatCurrency } from "@/lib/formatters";
 import {
   Card,
   CardContent,
@@ -6,18 +6,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card"
-import { Button } from "./ui/button"
-import Link from "next/link"
-import Image from "next/image"
+} from "./ui/card";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
 type ProductCardProps = {
-  id: string
-  name: string
-  priceInCents: number
-  description: string
-  imagePath: string
-}
+  id: string;
+  name: string;
+  priceInCents: number;
+  description: string;
+  imagePath: string;
+};
 
 export function ProductCard({
   id,
@@ -29,7 +29,7 @@ export function ProductCard({
   return (
     <Card className="flex overflow-hidden flex-col">
       <div className="relative w-full h-auto aspect-video">
-        <Image src={imagePath} fill alt={name} />
+        <Image src={imagePath} fill alt={name} className="object-scale-down" />
       </div>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
@@ -44,7 +44,7 @@ export function ProductCard({
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 export function ProductCardSkeleton() {
@@ -68,5 +68,5 @@ export function ProductCardSkeleton() {
         <Button className="w-full" disabled size="lg"></Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
