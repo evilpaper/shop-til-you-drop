@@ -1,7 +1,7 @@
 # Full Stack Ecommerce Store With Admin Dashboard From Scratch
 
 This is a copy of Kyle Cooks (Web Dev Simplified) project `next-js-ecommerce-mvp` with a more elaborate README.
-Intended purley for educational purpose.
+Intended purely for educational purposes.
 
 ## Features
 
