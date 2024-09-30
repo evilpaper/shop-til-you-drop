@@ -32,11 +32,17 @@ git clone https://github.com/evilpaper/shop-til-you-drop
 pnpm install
 ```
 
-### 3. Add environmental variables
+### 3. Setup database
 
-Get the `.env` file from the repository owner.
+#### 3.1 Create a .env file and add database url
 
-### 4. Setup Primsa ORM
+```bash
+touch .env
+```
+
+Create a `.env` file in the root of the project. Get the content for the file from the repository maintainer. Copy and paste it into your file. It should simply contain a url to the database.
+
+#### 3.2. Setup Primsa ORM
 
 ```bash
 npx prisma init --datasource-provider sqlite
@@ -44,7 +50,7 @@ npx prisma init --datasource-provider sqlite
 
 This creates a new prisma directory with a schema.prisma file and configures SQLite as your database. You're now ready to model your data and create your database with some tables.
 
-### 5. Run a migration to create your database tables with Prisma Migrate
+#### 3.3. Run a migration to create database tables
 
 At this point we have Prisma schema but no database yet. Run the following command in your terminal to create the SQLite database and the User and Post tables represented by your models:
 
@@ -58,9 +64,19 @@ It created a new SQL migration file for this migration in the prisma/migrations 
 It executed the SQL migration file against the database.
 It ran prisma generate under the hood (which installed the @prisma/client package and generated a tailored Prisma Client API based on your models).
 
-### 6. Run the project
+We now have a database. At this step you can run the project. But it won't contain any products. To add products we need to access the `/admin` pages. Let's do that next.
 
-We can now run the project with:
+### 4. Setup HTTP authentication and access the admin pages
+
+### 5. Setup Stripe integration
+
+/////
+
+DONE! You can now run the project locally!
+
+/////
+
+### Run locally
 
 ```bash
 pnpm dev
@@ -68,6 +84,4 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Setup Stripe integration
-
-## Access Admin pages
+## Going to production
