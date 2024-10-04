@@ -3,6 +3,11 @@ export async function isValidPassword(
   savedHashedPassword: string
 ) {
   const incomingHashedPassword = await hashPassword(incomingRawPassword);
+  // Uncomment this line. Goto `/admin` page. Write the username and password you want to use.
+  // Pick up the hashed password in you terminal and paste it into your environmental variable named HASHED_ADMIN_PASSWORD.
+  // Comment out this line again.
+  // Done!
+  // console.log(incomingHashedPassword);
   return incomingHashedPassword === savedHashedPassword;
 }
 
