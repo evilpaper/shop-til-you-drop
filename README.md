@@ -87,6 +87,12 @@ These are the values we will need:
 
 Once added we can access the admin pages on url `/admin` and add products in the user interface.
 
+/////
+
+DONE! You can now run the project locally with `pnpm dev`! Happy hacking!
+
+/////
+
 ### 6. Setup Stripe integration
 
 Create a Stripe account. Use it in test mode. Update the values for the following environmental variables:
@@ -95,11 +101,9 @@ Create a Stripe account. Use it in test mode. Update the values for the followin
 1. `NEXT_PUBLIC_STRIPE_PUBLIC_KEY`: Take the value from you Stripe account
 1. `NEXT_PUBLIC_SERVER_URL`: http://localhost:3000 when running locally
 
-/////
+### 7. Setup Resend integration
 
-DONE! You can now run the project locally with `pnpm dev`! Happy hacking!
-
-/////
+...coming soon
 
 ### Run locally
 
