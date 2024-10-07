@@ -101,6 +101,18 @@ Create a Stripe account. Use it in test mode. Update the values for the followin
 1. `NEXT_PUBLIC_STRIPE_PUBLIC_KEY`: Take the value from you Stripe account
 1. `NEXT_PUBLIC_SERVER_URL`: http://localhost:3000 when running locally
 
+The way it work is that we will, upon purchase, send a bunch of information to Stripe. Using Stripes own form.
+We then let Stripe handle the payment on their side. When Stripe is donw they will call us back with a webhook.
+The webhook is just a POST request that Stripe send to a url we provided them with.
+In development we create a local listener. Follwing the instructions in Stripes docs. To listen we need to spin up a local server
+that listen and forward events to your destination. To do this we write the following in a new terminal tab (new process):
+
+```bash
+stripe listen --forward-to localhost:3000/webhooks/stripe
+```
+
+At the route `/webhooks/stripe` we set up a POST endpoint that receive the forwarded events.
+
 ### 7. Setup Resend integration
 
 ...coming soon
