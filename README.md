@@ -89,7 +89,7 @@ Once added we can access the admin pages on url `/admin` and add products in the
 
 /////
 
-DONE! You can now run the project locally with `pnpm dev`! Happy hacking!
+DONE! You can now run the project locally with `pnpm dev`! Happy hacking! But...payments won't work. Read more below to add. It still can be good to see some result on the way.
 
 /////
 
@@ -101,17 +101,27 @@ Create a Stripe account. Use it in test mode. Update the values for the followin
 1. `NEXT_PUBLIC_STRIPE_PUBLIC_KEY`: Take the value from you Stripe account
 1. `NEXT_PUBLIC_SERVER_URL`: http://localhost:3000 when running locally
 
-The way it work is that we will, upon purchase, send a bunch of information to Stripe. Using Stripes own form.
-We then let Stripe handle the payment on their side. When Stripe is donw they will call us back with a webhook.
-The webhook is just a POST request that Stripe send to a url we provided them with.
-In development we create a local listener. Follwing the instructions in Stripes docs. To listen we need to spin up a local server
-that listen and forward events to your destination. To do this we write the following in a new terminal tab (new process):
+The payment process works as follows: upon purchase, we send a set of information to Stripe using their own payment form. Stripe then handles the payment on their side. Once the payment process is complete, Stripe notifies us via a webhook.
+
+A webhook is a POST request that Stripe sends to a URL we provide. In development, we use Stripe’s CLI to create a local listener. This listener acts as a local server that listens for incoming events and forwards the POST requests to our development environment. To set this up, run the following command in a new terminal tab (or process):
 
 ```bash
 stripe listen --forward-to localhost:3000/webhooks/stripe
 ```
 
-At the route `/webhooks/stripe` we set up a POST endpoint that receive the forwarded events.
+At the route `/webhooks/stripe`, we set up a POST endpoint to receive and process the forwarded events.
+
+Running both the development server and Stripe's listener manually each time can be tedious and error-prone. To automate this process, we use a script that runs both your development server and the stripe listen command concurrently. Here’s an example using the concurrently package, which allows you to run multiple commands at once:
+
+```json
+{
+  "scripts": {
+    "dev": "concurrently \"npm run dev-server\" \"npm run stripe-listen\"",
+    "dev-server": "next dev", // or whatever command you use to run your server locally
+    "stripe-listen": "stripe listen --forward-to localhost:3000/webhooks/stripe" // our "endpoint" for the webhook
+  }
+}
+```
 
 ### 7. Setup Resend integration
 
